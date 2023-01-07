@@ -1,15 +1,23 @@
 ﻿using System;
 namespace CompilerLearning {
 
-    class Scanner {
+    public class Scanner {
+        private string source;
 
+        public Scanner(string source) {
+            this.source = source;
+        }
+        public List<Token> scanTokens() {
+            Token t = new Token(TokenType.STRING, source, source, 0);
+            return new List<Token>(){t};
+        }
     }
 
     class Parser {
 
     }
 
-    class Lox {
+    public class Lox {
 
         private static Boolean hadError = false;
 
@@ -20,25 +28,24 @@ namespace CompilerLearning {
         }
 
         public static void runPrompt() {
-            Console.WriteLine("running prompt.");
-        }
-
-        public static void run(String source) {
-            try
-            {
-                using (StreamReader sr = new StreamReader(source)) {
-                    string line;
-                    while ((line = sr.ReadLine()) != null)
-                    {
-                        Console.WriteLine(line);
-                    }
+            try {
+                while (true) { 
+                    Console.WriteLine("> ");
+                    string line = Console.ReadLine();
+                    if (line == null) break;
+                    else run(line);
                 }
+            } catch (IOException e) {
+                Console.WriteLine("some error occured." + e.StackTrace);
             }
-            catch (Exception e)
-            {
-                // Let the user know what went wrong.
-                Console.WriteLine("The file could not be read:");
-                Console.WriteLine(e.Message);
+        }
+        public static void run(String source) {
+            Scanner scanner = new Scanner(source);
+            List<Token> tokens = scanner.scanTokens();
+            
+            // For now, just print the tokens.
+            foreach (Token token in tokens) {
+                Console.WriteLine(token);
             }
         }
 

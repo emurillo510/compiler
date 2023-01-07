@@ -1,5 +1,5 @@
 namespace CompilerLearning {
-    class Token {
+    public class Token {
         // token typed specified by the enums.
         readonly TokenType type;
         // this is the text representation of the token.
@@ -11,7 +11,7 @@ namespace CompilerLearning {
         readonly int line;
 
 
-        Token(TokenType type, String lexeme, Object literal, int line) {
+        public Token(TokenType type, String lexeme, Object literal, int line) {
             this.type = type;
             this.lexeme = lexeme;
             this.literal = literal;
