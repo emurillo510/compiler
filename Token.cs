@@ -1,14 +1,14 @@
 namespace CompilerLearning {
     public class Token {
         // token typed specified by the enums.
-        readonly TokenType type;
+        public TokenType type;
         // this is the text representation of the token.
-        readonly string lexeme;
+        public string lexeme;
 
         // this could be a string, int or, double, etc.
-        readonly Object literal;
+        public Object literal;
         // line (in text file) the token is located.
-        readonly int line;
+        public int line;
 
 
         public Token(TokenType type, String lexeme, Object literal, int line) {
